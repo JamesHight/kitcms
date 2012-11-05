@@ -7,6 +7,9 @@ var config,
 		server: {
 			address: 'localhost',
 			port: 3000
+		},
+		db: {
+			type: 'redis'
 		}
 	},
 	
@@ -31,11 +34,9 @@ switch(process.env.NODE_ENV){
 		break;
 		
 	case 'development':
+	default:
 		config = extend(production, development);
 		break;
-
-	default:
-		throw new Error('Invalid value for NODE_ENV');
 }
 
 module.exports = config;
