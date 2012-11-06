@@ -32,6 +32,7 @@ For a better understanding of how the CMS is structured, please have a look at t
 7. [Dustjs, Live Template Reloading](http://zavoo.com/nodejs_asynchronous_cms/07/dustjs_live_template_reloading)
 8. [Creating Dustjs Helpers](http://zavoo.com/nodejs_asynchronous_cms/08/dustjs_helpers)
 9. [Adding Cluster Support](http://zavoo.com/nodejs_asynchronous_cms/09/cluster_support)
+10. [Deploying To Heroku](http://zavoo.com/nodejs_asynchronous_cms/10/deploying_to_heroku)
 
 -->
 
