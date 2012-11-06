@@ -5,7 +5,7 @@ var config,
 		debug: false,
 		sessions: false,
 		server: {
-			address: 'localhost',
+			address: '0.0.0.0',
 			port: 3000,
 			workers: 'auto'
 		},
@@ -24,8 +24,7 @@ var config,
 
 	development = { // extends production		
 		debug: true,
-		server: {
-			address: '0.0.0.0',
+		server: {			
 			workers: 2
 		}
 	};
