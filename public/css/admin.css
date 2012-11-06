@@ -1,0 +1,90 @@
+body {
+  font-family: 'Droid Sans', sans-serif;
+  color: #333;
+  background: #ddd;
+}
+#content {
+  width: 1024px;
+  height: 100%;
+  margin: 0 auto;
+  background: #fff;
+}
+#keys {
+  float: left;
+  width: 270px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#keys ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#keys li {
+  padding: 4px 5px 4px 5px;
+  white-space: -moz-pre-wrap !important;
+  /* Mozilla, since 1999 */
+
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+
+  white-space: pre-wrap;
+  /* css-3 */
+
+  word-wrap: break-word;
+  /* Internet Explorer 5.5+ */
+
+  word-break: break-all;
+  white-space: normal;
+  border-bottom: 2px dotted #f7f7f7;
+}
+#keys li:last-child {
+  border-bottom: none;
+}
+#keys li:hover {
+  background: #ddd;
+}
+#keys li.selected {
+  background: #6c6c6c;
+  color: #fff;
+}
+#keys li.changed {
+  font-weight: bold;
+}
+#controls {
+  float: left;
+  width: 30px;
+  height: 100%;
+  background: #6c6c6c;
+}
+#controls a {
+  display: block;
+  width: 30px;
+  height: 30px;
+  color: #aaa;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+#controls a.active {
+  color: #fff;
+  text-shadow: 2px 2px 1px #333;
+}
+#controls a.active:hover {
+  font-size: 24px;
+}
+#editor {
+  float: left;
+  width: 724px;
+  height: 100%;
+}
+.CodeMirror-scroll {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+}
