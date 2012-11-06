@@ -41,6 +41,7 @@ body {
   word-break: break-all;
   white-space: normal;
   border-bottom: 2px dotted #f7f7f7;
+  cursor: pointer;
 }
 #keys li:last-child {
   border-bottom: none;
@@ -70,6 +71,7 @@ body {
   line-height: 30px;
   text-align: center;
   text-decoration: none;
+  outline: none;
 }
 #controls a.active {
   color: #fff;

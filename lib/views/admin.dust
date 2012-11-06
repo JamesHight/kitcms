@@ -114,9 +114,9 @@
 						$('#move').addClass('active');
 						$('#remove').addClass('active');
 						if (key.substr(0, 1) == '/')
-							$('#view').addClass('active').attr('href', key);
+							$('#view').addClass('active');
 						else
-							$('#view').removeClass('active').attr('href', '#');
+							$('#view').removeClass('active');
 					}
 				}
 
@@ -152,6 +152,9 @@
 					busy = true;
 
 					$.getJSON('/admin/get', {key: key}, function(data) {
+						if (data === null)
+							return alert('Database out of sync with client. Please reload this page.');
+
 						cache[key] = data;
 						editor.setValue(data);
 						current.removeClass('changed');
@@ -188,6 +191,11 @@
 								current.text(key);
 								addToList(current);
 								busy = false;
+
+								if (key.substr(0, 1) == '/')
+									$('#view').addClass('active');
+								else
+									$('#view').removeClass('active');
 							});
 						});	
 					}
@@ -212,10 +220,16 @@
 						$('#reload').removeClass('active');
 						$('#move').removeClass('active');
 						$('#remove').removeClass('active');
-						$('#view').removeClass('active').attr('href', '#');
+						$('#view').removeClass('active');
 						editor.setValue('');
 						busy = false;
 					});					
+				}
+
+				function view() {
+					if (!$('#view').hasClass('active') || busy)
+						return;
+					window.open(current.attr('data-value'),'_blank');
 				}
 
 				function listClick(e) {
@@ -243,6 +257,9 @@
 					}
 					else {
 						$.getJSON('/admin/get', {key: key}, function(data) {
+							if (data === null)
+								return alert('Database out of sync with client. Please reload this page.');
+
 							cache[key] = data;
 							editor.setValue(data);
 							busy = false;
@@ -263,9 +280,9 @@
 					$('#move').addClass('active');
 					$('#remove').addClass('active');
 					if (key.substr(0, 1) == '/')
-						$('#view').addClass('active').attr('href', key);
+						$('#view').addClass('active');
 					else
-						$('#view').removeClass('active').attr('href', '#');
+						$('#view').removeClass('active');
 				}
 
 				// Initialize editor
@@ -283,11 +300,30 @@
 								});
 
 				// Connect toolbar buttons
-				$('#new').click(newDoc);
-				$('#save').click(save);
-				$('#reload').click(reload);
-				$('#move').click(move);
-				$('#remove').click(remove);	
+				$('#new').click(function(e) {
+					e.preventDefault();
+					newDoc();
+				});
+				$('#save').click(function(e) {
+					e.preventDefault();
+					save();
+				});
+				$('#reload').click(function(e) {
+					e.preventDefault();
+					reload();
+				});
+				$('#move').click(function(e) {
+					e.preventDefault();
+					move();
+				});
+				$('#remove').click(function(e) {
+					e.preventDefault();
+					remove();
+				});	
+				$('#view').click(function(e) {
+					e.preventDefault();
+					view();
+				});	
 
 				// Listen for clicks on list of keys
 				$('#keys').on('click', 'li', listClick);
