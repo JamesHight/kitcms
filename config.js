@@ -6,7 +6,8 @@ var config,
 		sessions: false,
 		server: {
 			address: 'localhost',
-			port: 3000
+			port: 3000,
+			workers: 'auto'
 		},
 		db: {
 			type: 'redis'
@@ -25,6 +26,7 @@ var config,
 		debug: true,
 		server: {
 			address: '0.0.0.0'
+			workers: 2
 		}
 	};
 

@@ -1,6 +1,6 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "kitcms",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "node lib/server"
@@ -12,6 +12,8 @@
     "dustjs-linkedin": "~1.1.1",
     "less-middleware": "~0.1.8",
     "highlight": "~0.2.3",
-    "markdown": "~0.4.0"
-  }
+    "markdown": "~0.4.0",
+    "mime": "~1.2.7"
+  },
+  "engine": "node >= 0.8.0"
 }
