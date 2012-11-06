@@ -10,6 +10,10 @@ var config,
 		},
 		db: {
 			type: 'redis'
+		},
+		admin: {
+			user: 'foo',
+			password: 'bar'
 		}
 	},
 	
