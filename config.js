@@ -25,7 +25,6 @@ var config,
 	development = { // extends production		
 		debug: true,
 		server: {
-			address: '0.0.0.0',
 			workers: 2
 		}
 	};
