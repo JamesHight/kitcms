@@ -81,8 +81,29 @@ body {
 		color: #fff;
 		text-shadow: 2px 2px 1px #333;
 
-		&:hover {
+		&:hover, &.hover {
 			font-size: 24px;
+		}
+	}
+
+	.separator {
+		height: 15px;
+	}
+
+	.file-upload {
+		position: relative;
+		overflow: hidden;
+
+		input {
+			line-height: 30px;
+			font-size: 24px;
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			cursor: pointer;
+			opacity: 0;
 		}
 	}
 }

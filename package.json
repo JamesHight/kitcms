@@ -13,10 +13,11 @@
     "less-middleware": "~0.1.8",
     "highlight": "~0.2.3",
     "markdown": "~0.4.0",
-    "mime": "~1.2.7"
+    "mime": "~1.2.7",
+    "async": "~0.1.22"
   },
   "engines": {
     "node": "0.8.x",
-    "npm":  "1.1.x"
+    "npm": "1.1.x"
   }
 }
