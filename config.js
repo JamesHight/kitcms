@@ -2,20 +2,35 @@ var extend = require('./lib/helpers/config_extend');
 
 var config,
 	production = {
+		// Output errors to browser
 		debug: false,
+		// enable session cookies
 		sessions: false,
-		server: {
+		// http server settings
+		server: {			
 			address: '0.0.0.0',
 			port: 3000,
+			// Number of cluster processes to fork
+			// auto = [Number of CPUs] - 1 || 1
+			// You can also set it to a number value
 			workers: 'auto'
 		},
+		// db settings
+		// only type = 'redis' is currently supported
 		db: {
-			type: 'redis'
+			type: 'redis'/*,
+			server: 'localhost',
+			port: 6379,
+			number: 0, // Which Redis database to use 
+			password: 'foo'*/
 		},
+		// Credentials for /admin if not set in the domain
 		admin: {
 			user: 'foo',
 			password: 'bar'
 		},
+		// Domains that are resolved by server
+		// checks against req.host
 		domains: [
 			// This entry matches any domain that ends in example.com
 			// like: mydomainexample.com or www.example.com
@@ -28,7 +43,7 @@ var config,
 					password: 'bar2'
 				}
 			},
-			// These assign multiple names to the same domain
+			// Assign multiple names to the same domain
 			{
 				name: ['localhost', '127.0.0.1'],
 				namespace: 'default'
