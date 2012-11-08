@@ -34,7 +34,11 @@ var config,
 		domains: [
 			{
 				name: 'demo.kitcms.com',
-				namespace: 'demo_kitcms'
+				namespace: 'demo_kitcms',
+				admin: {
+					user: 'foo',
+					password: 'bar'
+				}
 			},
 			{
 				name: '*kitcms.com',
