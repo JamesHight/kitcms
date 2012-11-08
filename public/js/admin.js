@@ -58,6 +58,9 @@ $(function() {
 			if (key.indexOf('&') > -1)
 				return alert('"&" is a reserved character and cannot be used in a document name.');
 
+			// standardize key
+			key = key.toLowerCase().replace(/^\s*/, '').replace(/\s*$/, '');
+
 			if (cache.hasOwnProperty(key)) 
 				return alert('That key already exists.');
 
@@ -157,6 +160,9 @@ $(function() {
 		if (key && key.length) {
 			if (key.indexOf('&') > -1)
 				return alert('"&" is a reserved character and cannot be used in a document name.');
+
+			// standardize key
+			key = key.toLowerCase().replace(/^\s*/, '').replace(/\s*$/, '');
 			
 			if (cache.hasOwnProperty(key)) 
 				return alert('That key already exists.');
@@ -223,7 +229,13 @@ $(function() {
 	function view() {
 		if (!$('#view').hasClass('active') || busy)
 			return;
-		window.open(current.attr('data-value'),'_blank');
+		var url = current.attr('data-value');
+
+		// rewrite url for less files
+		if (url.substr(-5) === '.less')
+			url = url.substr(0, url.length - 4) + 'css';
+
+		window.open(url,'_blank');
 	}
 
 	function listClick(e) {
