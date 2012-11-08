@@ -33,7 +33,7 @@ var config,
 		// checks against req.host
 		domains: [
 			{
-				name: 'demo.kitcms.com',
+				name: ['demo.kitcms.com', '*'],
 				namespace: 'demo_kitcms',
 				admin: {
 					user: 'foo',
