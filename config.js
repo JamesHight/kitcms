@@ -15,7 +15,37 @@ var config,
 		admin: {
 			user: 'foo',
 			password: 'bar'
-		}
+		},
+		domains: [
+			// This entry matches any domain that ends in example.com
+			// like: mydomainexample.com or www.example.com
+			{
+				name: '*example.com',
+				namespace: 'example', // namespace used when storing data in Redis
+				// override admin credentials
+				admin: {
+					user: 'foo2',
+					password: 'bar2'
+				}
+			},
+			// These assign multiple names to the same domain
+			{
+				name: ['localhost', '127.0.0.1'],
+				namespace: 'default'
+			},
+			// Example catch all
+			// Has the same namespace as the previous domain, so they share data
+			// Admin login has been disabled
+			{
+				name: '*',
+				namespace: 'default',
+
+				admin: {
+					user: false,
+					password: false
+				}
+			}
+		]
 	},
 	
 	staging = { // extends production

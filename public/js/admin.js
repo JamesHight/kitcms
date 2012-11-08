@@ -55,6 +55,9 @@ $(function() {
 			newLi;
 
 		if (key && key.length) {
+			if (key.indexOf('&') > -1)
+				return alert('"&" is a reserved character and cannot be used in a document name.');
+
 			if (cache.hasOwnProperty(key)) 
 				return alert('That key already exists.');
 
@@ -63,12 +66,15 @@ $(function() {
 			// Store current doc before creating new doc
 			if (current) {
 				cache[current.attr('data-value')] = editor.getValue();
+				// store undo history
+				current.data('history', editor.getHistory());
 				current.removeClass('selected');
 			}
 
 			// Add a new cache entry
 			cache[key] = '';
 			editor.setValue('');
+			editor.clearHistory();
 
 			addToList(newLi);
 
@@ -127,6 +133,8 @@ $(function() {
 
 			cache[key] = data;
 			editor.setValue(data);
+			editor.clearHistory();
+			current.removeData('history');
 			current.removeClass('changed');
 			changed = false;
 			$('#save').removeClass('active');
@@ -147,6 +155,9 @@ $(function() {
 			oldKey;
 
 		if (key && key.length) {
+			if (key.indexOf('&') > -1)
+				return alert('"&" is a reserved character and cannot be used in a document name.');
+			
 			if (cache.hasOwnProperty(key)) 
 				return alert('That key already exists.');
 
@@ -201,6 +212,7 @@ $(function() {
 			$('#remove').removeClass('active');
 			$('#view').removeClass('active');
 			editor.setValue('');
+			editor.clearHistory();
 			busy = false;
 		}).error(function() {
 			connectionError();
@@ -212,10 +224,6 @@ $(function() {
 		if (!$('#view').hasClass('active') || busy)
 			return;
 		window.open(current.attr('data-value'),'_blank');
-	}
-
-	function importJson() {
-		
 	}
 
 	function listClick(e) {
@@ -238,6 +246,7 @@ $(function() {
 
 		if (cache.hasOwnProperty(key)) {
 			editor.setValue(cache[key]);
+			editor.clearHistory();
 			busy = false;
 
 		}
@@ -248,6 +257,7 @@ $(function() {
 
 				cache[key] = data;
 				editor.setValue(data);
+				editor.clearHistory();
 				busy = false;
 			}).error(function() {
 				connectionError();
@@ -272,6 +282,11 @@ $(function() {
 			$('#view').addClass('active');
 		else
 			$('#view').removeClass('active');
+
+		// Load old history
+		var history = current.data('history');
+		if (data)
+			editor.loadHistory(history);
 	}
 
 	// Initialize editor
@@ -279,7 +294,7 @@ $(function() {
 						mode: 'text/html', 
 						tabMode: 'indent',
 						lineNumbers: true,
-						autofocus: true,
+						autofocus: false, // Turn off for IOS
 						onChange: onChange,
 						extraKeys: {
 							'Ctrl-N': newDoc,
