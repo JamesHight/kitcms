@@ -26,39 +26,23 @@ var config,
 		},
 		// Credentials for /admin if not set in the domain
 		admin: {
-			user: 'foo',
-			password: 'bar'
+			user: 'necco',
+			password: 'lANu0kE70JR9OwJN4H4E71uo8axaB6ZxypxPMS0t'
 		},
 		// Domains that are resolved by server
 		// checks against req.host
 		domains: [
-			// This entry matches any domain that ends in example.com
-			// like: mydomainexample.com or www.example.com
 			{
-				name: '*example.com',
-				namespace: 'example', // namespace used when storing data in Redis
-				// override admin credentials
-				admin: {
-					user: 'foo2',
-					password: 'bar2'
-				}
+				name: 'demo.kitcms.com',
+				namespace: 'demo_kitcms'
 			},
-			// Assign multiple names to the same domain
 			{
-				name: ['localhost', '127.0.0.1'],
-				namespace: 'default'
-			},
-			// Example catch all
-			// Has the same namespace as the previous domain, so they share data
-			// Admin login has been disabled
+				name: '*kitcms.com',
+				namespace: 'kitcms'
+			},			
 			{
-				name: '*',
-				namespace: 'default',
-
-				admin: {
-					user: false,
-					password: false
-				}
+				name: '*zavoo.com',
+				namespace: 'zavoo'
 			}
 		]
 	},
