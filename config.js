@@ -16,8 +16,11 @@ var config,
 			workers: 'auto'
 		},
 		// db settings
-		// only type = 'redis' is currently supported
 		db: {
+			// type can currently be 'redis' or 'json'
+			// only the Redis adapter supports multiple processes/servers
+			// 'json' saves changes to a local json file under the data directory
+			
 			type: 'redis'/*,
 			server: 'localhost',
 			port: 6379,
