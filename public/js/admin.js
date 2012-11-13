@@ -297,7 +297,7 @@ $(function() {
 
 		// Load old history
 		var history = current.data('history');
-		if (data)
+		if (history)
 			editor.loadHistory(history);
 	}
 
