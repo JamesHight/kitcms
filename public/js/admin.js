@@ -307,8 +307,10 @@ $(function() {
 	}
 
 	function setEditorMode(key) {
-		var ext = key.split('/').pop().split('.').pop(),
+		var ext = key.split('/').pop().split('.'),
 			mode;
+
+		ext = (ext.length > 1) ? ext.pop() : '';
 
 		switch(ext) {
 			case 'css':
