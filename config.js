@@ -6,6 +6,8 @@ var config,
 		debug: false,
 		// enable session cookies
 		sessions: false,
+		//enable socket.io, see lib/socketio/index.js and lib/socketio/example.js
+		socketio: false,
 		// http server settings
 		server: {			
 			address: '0.0.0.0',
@@ -73,6 +75,8 @@ var config,
 
 	development = { // extends production		
 		debug: true,
+		sessions: true,
+		socketio: true,
 		server: {			
 			workers: 2
 		}
