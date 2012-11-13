@@ -64,6 +64,8 @@ $(function() {
 			if (cache.hasOwnProperty(key)) 
 				return alert('That key already exists.');
 
+			setEditorMode(key);
+
 			newLi = $('<li>').attr('data-value', key).text(key);
 
 			// Store current doc before creating new doc
@@ -254,7 +256,10 @@ $(function() {
 		if (current) {
 			cache[current.attr('data-value')] = editor.getValue();
 			current.removeClass('selected');
+			current.data('history', editor.getHistory());
 		}
+
+		setEditorMode(key);
 
 		if (cache.hasOwnProperty(key)) {
 			editor.setValue(cache[key]);
@@ -298,13 +303,52 @@ $(function() {
 		// Load old history
 		var history = current.data('history');
 		if (history)
-			editor.loadHistory(history);
+			editor.setHistory(history);
+	}
+
+	function setEditorMode(key) {
+		var ext = key.split('/').pop().split('.').pop(),
+			mode;
+
+		console.log(ext);
+
+		switch(ext) {
+			case 'css':
+				mode = 'css';
+				break;
+
+			case 'less':
+				mode = 'less';
+				break;
+
+			case 'js':
+			case 'json':
+				mode = 'javascript';
+				break;
+
+			case 'md':
+				mode = 'markdown';
+				break;
+
+			case 'coffee':
+			case 'cs':
+				mode = 'coffeescript';
+				break;
+
+			case 'xml':
+				mode = 'xml';
+				break;
+
+			default:
+				mode = 'htmlmixed';
+		}
+
+		editor.setOption('mode', mode);
 	}
 
 	// Initialize editor
 	editor = CodeMirror.fromTextArea(document.getElementById('text'), {
 						mode: 'text/html', 
-						tabMode: 'indent',
 						lineNumbers: true,
 						autofocus: false, // Turn off for IOS
 						onChange: onChange,
