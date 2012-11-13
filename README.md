@@ -1,16 +1,15 @@
 kitCMS
 ======
 
-kitCMS was designed to be a simple Node.js CMS framework. Its core components are [Express](http://expressjs.com), [Dustjs](http://linkedin.github.com/dustjs/), and [Redis](http://redis.io/). The in admin editor relies on the [CodeMirror](http://codemirror.net/) project. Content is mapped to key/value pairs stored in Redis. Templating and partials are handled using Dustjs syntax.  
+kitCMS is designed to be a simple Node.js CMS framework. Its core components are [Express](http://expressjs.com), [Dustjs](http://linkedin.github.com/dustjs/), and [Redis](http://redis.io/). The in admin editor relies on the [CodeMirror](http://codemirror.net/) project. Content is mapped to key/value pairs stored in Redis. Templating and partials are handled using Dustjs syntax.  
 
-<!--
 [Live Demo](http://demo.kitcms.com)
 
-[Admin Demo](http://demo.kitcms.com/admin)
+[Live Demo Admin](http://demo.kitcms.com/admin)
 
 	user: foo
 	password: bar
--->
+
 Main Features
 -------------
 
@@ -20,6 +19,7 @@ Main Features
 * Simple web admin interface
 * Truly asynchronous template rendering using Dustjs
 * Easy to write custom template helpers
+* Remote API
 
 
 Quick Start

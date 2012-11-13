@@ -41,6 +41,7 @@
 
 							</i>
 						</a>
+						<input type="hidden" name="clear" value="true"/>
 						<input type="file" name="file" title="Import Data As JSON" onchange="this.form.submit()"/>
 					</form>
 				</div>
