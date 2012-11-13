@@ -20,6 +20,7 @@ var config,
 			// type can currently be 'redis' or 'json'
 			// only the Redis adapter supports multiple processes/servers
 			// 'json' saves changes to a local json file under the data directory
+			// see lib/db/redis.js and lib/db/json.js for more config options
 			
 			type: 'redis'/*,
 			server: 'localhost',
