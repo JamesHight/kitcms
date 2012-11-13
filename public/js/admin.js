@@ -310,8 +310,6 @@ $(function() {
 		var ext = key.split('/').pop().split('.').pop(),
 			mode;
 
-		console.log(ext);
-
 		switch(ext) {
 			case 'css':
 				mode = 'css';
