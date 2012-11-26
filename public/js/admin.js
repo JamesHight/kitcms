@@ -4,7 +4,8 @@ $(function() {
 		busy = false, // flag if we are currently loading, saving, or deleting
 		current, // pointer to current document $(<li>)
 		editor, // CodeMirror instance
-		uploader; // File-Uploader instance
+		uploader, // File-Uploader instance
+		invalidChars = ['&', ':']; // Invalid characters for key names
 
 	/**
 	 * Add a new <li> to the key list in the correct alphabetical order
@@ -55,8 +56,8 @@ $(function() {
 			newLi;
 
 		if (key && key.length) {
-			if (key.indexOf('&') > -1)
-				return alert('"&" is a reserved character and cannot be used in a document name.');
+			if (!validKey(key))
+				return;
 
 			// standardize key
 			key = key.toLowerCase().replace(/^\s*/, '').replace(/\s*$/, '');
@@ -160,8 +161,8 @@ $(function() {
 			oldKey;
 
 		if (key && key.length) {
-			if (key.indexOf('&') > -1)
-				return alert('"&" is a reserved character and cannot be used in a document name.');
+			if (!validKey(key))
+				return;
 
 			// standardize key
 			key = key.toLowerCase().replace(/^\s*/, '').replace(/\s*$/, '');
@@ -336,14 +337,37 @@ $(function() {
 				break;
 
 			case 'xml':
+			case 'svg':
 				mode = 'xml';
 				break;
+
+			case 'jpeg':
+			case 'jpg':
+			case 'gif':
+			case 'png':
+				return; //showImage();
+				
 
 			default:
 				mode = 'htmlmixed';
 		}
 
+		//showText();
 		editor.setOption('mode', mode);
+	}
+
+	function validKey(key) {
+		var i, c;
+
+		for (i = 0; i < invalidChars.length; i++) {
+			c = invalidChars[i];
+			if (key.indexOf(c) !== -1) {
+				alert('"' + c + '" is a reserved character and cannot be used in a document name.');
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	// Initialize editor

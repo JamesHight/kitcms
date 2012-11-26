@@ -4,10 +4,18 @@ var config,
 	production = {
 		// Output errors to browser
 		debug: false,
+		// Enable memwatch logging of stats and leak events to logs directory
+		memwatch: false,
+
 		// enable session cookies
 		sessions: false,
+
+		// secret used to prevent cookie tampering
+		cookieSecret: 'ZhtIEKq51-Md2HH--b0w',
+
 		//enable socket.io, see lib/socketio/index.js and lib/socketio/example.js
 		socketio: false,
+
 		// http server settings
 		server: {			
 			address: '0.0.0.0',
@@ -17,6 +25,7 @@ var config,
 			// You can also set it to a number value
 			workers: 'auto'
 		},
+
 		// db settings
 		db: {
 			// type can currently be 'redis' or 'json'
@@ -30,11 +39,13 @@ var config,
 			number: 0, // Which Redis database to use 
 			password: 'foo'*/
 		},
+
 		// Credentials for /admin if not set in the domain
 		admin: {
 			user: 'foo',
 			password: 'bar'
 		},
+
 		// Domains that are resolved by server
 		// checks against req.host
 		domains: [
@@ -66,7 +77,10 @@ var config,
 					password: false
 				}
 			}
-		]
+		],
+
+		// Directory to write log files
+		logs: __dirname + '/logs'
 	},
 	
 	staging = { // extends production
@@ -75,6 +89,7 @@ var config,
 
 	development = { // extends production		
 		debug: true,
+		memwatch: true,
 		sessions: true,
 		socketio: true,
 		server: {			
