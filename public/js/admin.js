@@ -80,6 +80,7 @@ $(function() {
 			// Add a new cache entry
 			cache[key] = '';
 			editor.setValue('');
+			editor.setOption('readOnly', false);			
 			editor.clearHistory();
 
 			addToList(newLi);
@@ -274,7 +275,14 @@ $(function() {
 					return alert('Database out of sync with client. Please reload this page.');
 
 				cache[key] = data;
-				editor.setValue(data);
+				if (typeof data === 'string') {
+					editor.setValue(data);
+					editor.setOption('readOnly', false);
+				}
+				else {
+					editor.setOption('readOnly', true);
+				}
+
 				editor.clearHistory();
 				busy = false;
 			}).error(function() {

@@ -10,7 +10,7 @@ var config,
 		// enable session cookies
 		sessions: false,
 
-		// secret used to prevent cookie tampering
+		// secret used to discourage cookie tampering
 		cookieSecret: 'ZhtIEKq51-Md2HH--b0w',
 
 		//enable socket.io, see lib/socketio/index.js and lib/socketio/example.js

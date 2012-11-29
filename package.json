@@ -20,7 +20,7 @@
     "memwatch": "~0.2.0",
     "bunyan": "~0.16.7",
     "connect": "~2.7.0",
-    "hooks": "~0.3.0"
+    "hooks": "git://github.com/JamesHight/hooks-js.git"
   },
   "engines": {
     "node": "0.8.x",
